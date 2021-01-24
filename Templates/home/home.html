@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+
+    <style>
+    @import url(http://fonts.googleapis.com/css?family=Roboto+Slab);
+        *{
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+        body{
+            background-color: rgb(172, 175, 196);
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            padding-top: 0px;
+        }
+        .header{
+            background-color: #825d5d;
+            text-align: center;
+            max-width: 100%;
+            color: aliceblue;
+            padding: 10px;
+            margin: auto;
+            border: 1px solid gray;
+            border-bottom: none;
+        }
+        button[type=button]{
+            margin-bottom: 20px;
+            width: 20%;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #7acb97;
+            border-color: darkgray;
+            background:  #a79a9a;
+            color: aliceblue;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .container{
+        border: 1px solid grey;
+        width: 100%;
+        height: 640px;
+        margin: auto;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        }
+        .footer{
+            background-color: #825d5d;
+            text-align: center;
+            max-width: 100%;
+            color: aliceblue;
+            border: 1px solid gray;
+            border-bottom: none;
+            padding-top: 10px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <div class="header">
+        <div class="col-md-12">
+        <h2>Welcome to our website</h2>
+    </div>
+
+    </div>
+    <div class="container"  style="align-items: center; ">
+        <div class="row">
+            <div class="col-md-4" style="padding: 20px;" >
+        <div class="card" style="width: 18rem; float:left;">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Card image cap" style="height: 100px;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" style="padding: 20px;">
+          <div class="card" style="width: 18rem; float:left; padding-top: 20px;">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1581456495146-65a71b2c8e52?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8aHVtYW58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Card image cap" style="height: 100px;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" style="">
+          <div class="card col-md-4" style="width: 18rem; float:left; padding: 20px;">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8aHVtYW58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Card image cap" style="height: 100px;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        </div>
+    </div>
+<footer>
+    <div class="footer">
+        <div class="col-md-12">
+            <a href={% url 'logout' %}> <button type="button"  id="logout">logout</button></a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

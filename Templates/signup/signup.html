@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Roboto+Slab);
+        *{
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+        body{
+            background-color: darkgray;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            padding-top: 35px;
+        }
+        .container{
+            border:none ;
+            max-width: 600px;
+            margin: auto;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            padding-top: 50px;
+        }
+        .header{
+            background-color: #825d5d;
+            text-align: center;
+            max-width: 600px;
+            color: aliceblue;
+            padding: 10px;
+            margin: auto;
+            border:none;
+            border-bottom: none;
+            padding-top: 20px;
+            margin-top: -20px;
+        }
+        .header h2{
+            margin: 0;
+            padding: 10px;
+        }
+        form{
+            margin-top: 0px;
+            padding-top: 10px;
+        }
+        input[type=text]{
+            margin-bottom: 20px;
+            margin-top: 10px;
+            width: 100%;
+            padding: 15px;
+            border-radius: 5px;
+            border-color: darkgray;
+            border: 1px solid #7acb97;
+            font-size: 18px;
+        }
+        input[type=password]{
+            margin-bottom: 20px;
+            margin-top: 10px;
+            width: 100%;
+            padding: 15px;
+            border-radius: 5px;
+            border-color: darkgray;
+            border: 1px solid #7acb97;
+            font-size: 18px;
+        }
+        input[type=button]{
+            margin-bottom: 20px;
+            width: 100%;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #7acb97;
+            border-color: darkgray;
+            background:  #825d5d;
+            color: aliceblue;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>Sign up</h2>
+    </div>
+    <div class="container">
+
+        <form action="" class="" >
+            <input type="text"  placeholder="Firstname" id="firstname" style="text-align: center;">
+             <div >
+                <p id="invalid_firstname" style="color: red; text-align: center;"></p>
+        </div>
+
+            <input type="text" placeholder="Lastname" id="lastname" style="text-align: center;">
+             <div >
+                <p id="invalid_lastname" style="color: red; text-align: center;"></p>
+        </div>
+
+            <input type="text" placeholder="username" id="username" style="text-align: center;">
+             <div >
+                <p id="invalid_username" style="color: red; text-align: center;"></p>
+        </div>
+
+            <input type="password"  placeholder="password" id="password" style="text-align: center;">
+             <div >
+                <p id="invalid_password" style="color: red; text-align: center;"></p>
+        </div>
+
+            <input type="password" placeholder="Confirm Password" id="confirmpassword" style="text-align: center;">
+             <div >
+                <p id="invalid_confirm_password" style="color: red; text-align: center;"></p>
+        </div>
+             <div >
+                <p id="invalid_user" style="color: red; text-align: center;"></p>
+        </div>
+{#            {% for message in messages %}#}
+{#                <div >#}
+{#                <h3 id=""  style="color: red; text-align: center;">{{ message }}</h3>#}
+{#        </div>#}
+{##}
+{#            {% endfor %}#}
+
+            <input type="button" value="Register" id="register">
+            <p style="text-align: center; color: aliceblue;">Already have an account <a href="/" >Sign in</a></p>
+
+
+
+        </form>
+    </div>
+
+<a href="https://codepen.io/davinci/" target="_blank">check my other pens</a>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>{#    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>#}
+<script>
+    $('#register').click(function (){
+        var firstname = $('#firstname').val()
+        var lastname = $("#lastname").val()
+        var username = $("#username").val()
+        var password = $('#password').val()
+        var confirmpassword = $("#confirmpassword").val()
+        console.log(username, password)
+        var data = {
+            'csrfmiddlewaretoken' : '{{ csrf_token }}',
+            'firstname' : firstname,
+            'lastname' : lastname,
+            'username' : username,
+            'password' : password,
+            'confirmpassword': confirmpassword,
+        }
+        if (firstname.length < 4 && firstname.length <16){
+            $('#invalid_firstname').html('Enter minimum 4 characters and would not be exceed than 16 characters')
+        }
+        else if (lastname.length < 4 && lastname.length <16){
+            $('#invalid_lastname').html('Enter minimum 4 characters and would not be exceed than 16 characters')
+        }
+        else{
+            $.ajax({
+
+                url:'/signup/',
+                method:'POST',
+                data:data,
+                dataType:'json',
+                success:function (data){
+                    if (data == 'true'){
+                        alert('Submitted Successfully')
+                        window.location.replace('/')
+                    }
+                    if (data == 'false'){
+                        $('#invalid_confirm_password').html('re_enter password')
+                    }
+                    if(data=='user'){
+                        $('#invalid_user').html('username already exists')
+                    }
+
+                }
+            })
+        }
+
+    })
+</script>
+
+</body>
+</html>

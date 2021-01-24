@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adminlogin</title>
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Roboto+Slab);
+        *{
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+        body{
+            background-color: darkgray;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            padding-top: 150px;
+        }
+        .container{
+            border: none;
+            max-width: 600px;
+            margin: auto;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .header{
+            background-color: #825d5d;
+            text-align: center;
+            max-width: 600px;
+            color: aliceblue;
+            padding: 10px;
+            margin: auto;
+            border: none;
+            border-bottom: none;
+        }
+        .header h2{
+            margin: 0;
+            padding: 15px;
+        }
+        form{
+            margin-top: 15px;
+        }
+        input[type=text]{
+            margin-bottom: 20px;
+            margin-top: 10px;
+            width: 100%;
+            padding: 15px;
+            border-radius: 5px;
+            border-color: darkgray;
+            border: 1px solid #7acb97;
+            font-size: 18px;
+        }
+        input[type=password]{
+            margin-bottom: 20px;
+            margin-top: 10px;
+            width: 100%;
+            padding: 15px;
+            border-radius: 5px;
+            border-color: darkgray;
+            border: 1px solid #7acb97;
+            font-size: 18px;
+        }
+        input[type=button]{
+            margin-bottom: 20px;
+            width: 100%;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #7acb97;
+            border-color: darkgray;
+            background:  #825d5d;
+            color: aliceblue;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>Admin Login</h2>
+    </div>
+    <div class="container">
+
+        <form action="" class="" >
+            <input type="text"  placeholder="username" id="username" style="text-align: center;">
+            <input type="password"  placeholder="password" id ="password" style="text-align: center;">
+
+
+          <div >
+                <p id="invalid" style="color: red; text-align: center;"></p>
+        </div>
+
+            <br>
+            <input type="button" value="submit" id="submit">
+
+        </form>
+    </div>
+{#     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>#}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>{#    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>#}
+<script>
+    $('#submit').click(function (){
+        var username = $('#username').val()
+        var password = $('#password').val()
+        console.log(username, password)
+        data = {
+            'csrfmiddlewaretoken' : '{{ csrf_token }}',
+            'username' : username,
+            'password' : password
+        }
+        if (username !="admin"){
+            $('#invalid').html('Enter the valid username')
+        }
+        else if (password != "admin"){
+            $('#invalid').html("Enter the valid password")
+        }
+        else{
+            $.ajax({
+                url:'/adminsignin/',
+                method:'POST',
+                data:data,
+                dataType:'json',
+                success:function (data){
+                    if (data == 'true'){
+                        window.location.replace('/adminhome/')
+                    }
+                    if (data == 'false'){
+                        $('#invalid').html('Invalid Credentials')
+                    }
+                }
+            })
+        }
+
+    })
+</script>
+</body>
+
+
+
+</html>

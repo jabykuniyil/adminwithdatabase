@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Roboto+Slab);
+        @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&subset=greek-ext');
+
+body{
+	background-image: url("https://images.pexels.com/photos/891252/pexels-photo-891252.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+	background-position: center;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+	min-height:100vh;
+	font-family: 'Noto Sans', sans-serif;
+}
+.text-center{
+	color:#fff;
+	text-transform:uppercase;
+    font-size: 23px;
+    margin: -50px 0 80px 0;
+    display: block;
+    text-align: center;
+}
+.box{
+	position:absolute;
+	left:50%;
+	top:50%;
+	transform: translate(-50%,-50%);
+    background-color: rgba(0, 0, 0, 0.89);
+	border-radius:3px;
+	padding:70px 100px;
+}
+.input-container{
+	position:relative;
+	margin-bottom:25px;
+}
+.input-container label{
+	position:absolute;
+	top:0px;
+	left:0px;
+	font-size:16px;
+	color:#fff;
+    pointer-event:none;
+	transition: all 0.5s ease-in-out;
+}
+.input-container input{
+  border:0;
+  border-bottom:1px solid #555;
+  background:transparent;
+  width:100%;
+  padding:8px 0 5px 0;
+  font-size:16px;
+  color:#fff;
+}
+.input-container input:focus{
+ border:none;
+ outline:none;
+ border-bottom:1px solid #e74c3c;
+}
+.btn{
+	color:#fff;
+	background-color:#e74c3c;
+	outline: none;
+    border: 0;
+    color: #fff;
+	padding:10px 20px;
+	text-transform:uppercase;
+	margin-top:50px;
+	border-radius:2px;
+	cursor:pointer;
+	position:relative;
+}
+/*.btn:after{
+	content:"";
+	position:absolute;
+	background:rgba(0,0,0,0.50);
+	top:0;
+	right:0;
+	width:100%;
+	height:100%;
+}*/
+.input-container input:focus ~ label,
+.input-container input:valid ~ label{
+	top:-12px;
+	font-size:12px;
+
+}
+
+        *{
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+        body{
+            background-image: url("data:image/jpeg;base64,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");
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            padding-top: 150px;
+        }
+        {#.container{#}
+        {#    border: none;#}
+        {#    max-width: 600px;#}
+        {#    margin: auto;#}
+        {#    padding: 10px;#}
+        {#    font-size: 18px;#}
+        {#    font-weight: bold;#}
+        {#}#}
+        {#.header{#}
+        {#    font-family: "Baskerville Old Face";#}
+        {#    text-align: center;#}
+        {#    max-width: 600px;#}
+        {#    color: aliceblue;#}
+        {#    padding: 10px;#}
+        {#    margin: auto;#}
+        {#    border: none;#}
+        {#    border-bottom: none;#}
+        {#}#}
+        {#.header h2{#}
+        {#    margin: 0;#}
+        {#    padding: 15px;#}
+        {#}#}
+        {#form{#}
+        {#    margin-top: 15px;#}
+        {#}#}
+        {#input[type=text]{#}
+            {#margin-bottom: 20px;#}
+            {#margin-top: 10px;#}
+            {#width: 100%;#}
+            {#padding: 15px;#}
+            {#border: none;#}
+            {#border-bottom: 2px solid red;#}
+            {#font-size: 18px;#}
+        {#    font-family: 'Roboto', sans-serif;#}
+        {#    color: #333;#}
+        {#    font-size: 1.2rem;#}
+	    {#    margin: 0 auto;#}
+        {#    padding: 1.5rem 2rem;#}
+        {#    border-radius: 0.2rem;#}
+        {#    background-color: rgb(255, 255, 255);#}
+        {#    border: none;#}
+        {#    width: 90%;#}
+        {#    display: block;#}
+        {#    border-bottom: 0.3rem solid transparent;#}
+        {#    transition: all 0.3s;#}
+        {#}#}
+        {#input[type=password]{#}
+        {#    margin-bottom: 20px;#}
+        {#    margin-top: 10px;#}
+        {#    width: 100%;#}
+        {#    padding: 15px;#}
+        {#    border-radius: 5px;#}
+        {#    border: none;#}
+        {#    font-size: 18px;#}
+        {#}#}
+
+    </style>
+</head>
+<body>
+{#    <div class="header">#}
+{#        <h2>Login</h2>#}
+{#    </div>#}
+{#    <div class="container">#}
+{##}
+{#        <form action="" class="" >#}
+{#            <input type="text" class="" placeholder="username" id="username" style="text-align: center;">#}
+{#            <input type="password"  placeholder="password" id ="password" style="text-align: center;">#}
+{##}
+{##}
+{##}
+{#          <div >#}
+{#                <p id="invalid" style="color: red; text-align: center;"></p>#}
+{#        </div>#}
+{#            <br>#}
+{#            <input type="button" value="login" id="login">#}
+{#            <p style="text-align: center; color: aliceblue;">Don't have an account <a href="/signup/" >New user</a></p>#}
+{##}
+{#        </form>#}
+        <div class="box">
+	<form>
+		<span class="text-center">login</span>
+	<div class="input-container">
+		<input type="text"  id="username"/>
+		<label>username</label>
+	</div>
+	<div class="input-container">
+		<input type="password"  id ="password"/>
+		<label>password</label>
+	</div>
+        <div>
+            <span id="invalid" style="text-align: center; color: red;" >
+
+            </span>
+        </div>
+		<button type="button" class="btn" value="login" id="login">login</button>
+
+        <p style="text-align: center; color: aliceblue;">Don't have an account <a href="/signup/" style="color: green" >New user</a></p>
+</form>
+</div>
+
+    </div>
+{#     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>#}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>{#    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>#}
+<script>
+    $('#login').click(function (){
+        var username = $('#username').val()
+        var password = $('#password').val()
+        console.log(username, password)
+        var data = {
+            'csrfmiddlewaretoken' : '{{csrf_token}}',
+            'username' : username,
+            'password' : password
+        }
+        if (username == ""){
+            $('#invalid').html('Enter the valid username')
+        }
+        else if (password == ""){
+            $('#invalid').html("Enter the valid password")
+        }
+        else{
+            $.ajax({
+                url:'/',
+                method:'POST',
+                data:data,
+                dataType:'json',
+                success:function (data){
+                    if (data == 'true'){
+                        window.location.replace('/home/')
+                    }
+                    if (data == 'false'){
+                        $('#invalid').html('Invalid Credentials')
+                    }
+                }
+            })
+        }
+
+    })
+</script>
+</body>
+
+
+
+</html>

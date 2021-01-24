@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>admin panel</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+</head>
+<body>
+<div  >
+    <section>
+        <div style="padding-left: 5rem; padding-right: 5rem;">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid" style="padding: 1rem">
+    <a class="navbar-brand" href="">admin home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+        </div>
+    <div class="collapse navbar-collapse d-flex justify-content-end" style="justify-content: right" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+           <li class="nav-item">
+               <a href="/adminlogout/"> <button type="button" class="btn btn-danger"> logout</button></a>
+        </li>
+
+      </ul>
+</div>
+    </div>
+  </div>
+</nav>
+    </section>
+    <section>
+    <div  style="padding: 5rem;">
+        <table class="table" id="tab">
+
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">username</th>
+        <th scope="col">password</th>
+        <th></th>
+        <th><a href="/signup/"><button type="button" class="btn btn-primary">Create New User</button></a></th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+        {% for data in user %}
+                <tr>
+
+
+      <th scope="row">{{ data.id }}</th>
+      <td>{{ data.first_name }}</td>
+      <td>{{ data.last_name }}</td>
+      <td>{{ data.username }}</td>
+       <td>{{ data.password }}</td>
+              <td><a href="/edit/{{ data.id }}/"><button type="button" class="btn btn-primary">Edit</button></a></td>
+              <td><a href="/delete/{{ data.id }}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+            </tr>
+        {% endfor %}
+
+
+
+  </tbody>
+</table>
+    </div>
+        </section>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('#tab').DataTable();
+    } );
+</script>
+</body>
+</html>
